@@ -1,0 +1,44 @@
+@startuml
+
+package classes {
+    class Cliente {
+        - nome: String
+        + Cliente(nome: String)
+        + getNome(): String
+    }
+    
+    class Funcionario {
+        - nome: String
+        + Funcionario(nome: String)
+        + getNome(): String
+        + atenderCliente(cliente: Cliente): void
+        + realizarServico(pedido: Pedido): void
+    }
+    
+    class Pedido {
+        - cliente: Cliente
+        - servico: Servico
+        + Pedido(cliente: Cliente, servico: Servico)
+        + getCliente(): Cliente
+        + getServico(): Servico
+    }
+    
+    class Servico {
+        - nome: String
+        + Servico(nome: String)
+        + getNome(): String
+    }
+    
+    class Pagamento {
+        - pedido: Pedido
+        + Pagamento(pedido: Pedido)
+        + realizarPagamento(): void
+    }
+}
+
+Cliente --> Servico
+Servico --> Cliente
+Funcionario --> Servico
+Funcionario --> Pedido
+Pedido --> Pagamento
+@enduml
